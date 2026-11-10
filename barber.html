@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Barbershop – wersja demo</title><link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet"><style>
+:root{--bg:#F4F5F2;--ink:#0F1A17;--mute:#55635E;--line:#D9DED9;--acc:#0F5D4A;--onacc:#fff;--card:#E3ECE7;--art:linear-gradient(160deg,#CFE2D9,#0F5D4A);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Hanken Grotesk",system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+h1,h2,h3{font-family:Anton,system-ui,sans-serif;margin:0;line-height:1.08;letter-spacing:-.01em}
+h1{font-size:clamp(2.6rem,8vw,5.2rem);font-weight:400}h2{font-size:clamp(1.9rem,4.5vw,2.8rem);margin-bottom:.6em;font-weight:400}h3{font-size:1.2rem;font-weight:400}
+a{color:inherit}:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);border-bottom:2px solid var(--ink)}
+.bar{max-width:1080px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.logo{font:400 1.3rem Anton,sans-serif;text-decoration:none}
+nav{display:flex;gap:2px;flex-wrap:wrap}nav a{text-decoration:none;padding:8px 14px;border-radius:8px;font-weight:500;color:var(--mute)}
+nav a:hover{color:var(--ink)}nav a[aria-current=page]{background:var(--acc);color:var(--onacc)}
+main{max-width:1080px;margin:auto;padding:0 22px}
+.page{display:none;padding:52px 0 72px}.page.on{display:block}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center}
+.hero p{color:var(--mute);max-width:46ch;margin:20px 0 28px;font-size:1.08rem}
+.art{aspect-ratio:1/1;border-radius:28px;background:var(--art);display:grid;place-items:center;text-align:center;padding:24px;color:var(--ink);font-size:.9rem;max-width:380px;width:100%;justify-self:center}
+.btn{display:inline-block;background:var(--acc);color:var(--onacc);text-decoration:none;padding:14px 28px;border-radius:10px;font:400 1rem Anton,sans-serif;border:0;cursor:pointer}
+.btn:hover{filter:brightness(.92)}.btn.ghost{background:none;color:var(--ink);border:2px solid var(--ink);margin-left:8px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}
+.tile{background:var(--card);border-radius:16px;padding:22px}.tile p{margin:6px 0 0;color:var(--mute);font-size:.96rem}
+.rows{border-top:2px solid var(--ink)}
+.row{display:grid;grid-template-columns:1fr auto;gap:2px 24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.row p{grid-column:1;margin:0;color:var(--mute);font-size:.96rem}.row b{grid-row:1;grid-column:2;font:400 1.15rem Anton,sans-serif;white-space:nowrap}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.note{background:var(--card);padding:16px 20px;border-radius:12px;color:var(--mute);margin-top:24px;font-size:.93rem}
+label{display:block;font-weight:500;margin:0 0 14px}
+input,textarea,select{display:block;width:100%;margin-top:6px;padding:12px 14px;font:inherit;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.ok{display:none;margin-top:14px;font-weight:400}
+footer{border-top:2px solid var(--ink);padding:26px 22px;text-align:center;color:var(--mute);font-size:.9rem}
+@media(max-width:760px){.hero,.cols,.three{grid-template-columns:1fr}.btn.ghost{margin:10px 0 0}}
+@media(prefers-reduced-motion:no-preference){.page.on{animation:in .3s ease}@keyframes in{from{opacity:0}to{opacity:1}}}
+</style></head><body><header><div class="bar"><a class="logo" href="#home">Barbershop</a><nav aria-label="Menu"><a href="#home">Start</a><a href="#services">Cennik</a><a href="#booking">Rezerwacja</a><a href="#contact">Kontakt</a></nav></div></header><main><section class="page" id="home"><div class="hero"><div><h1>Dobre cięcie. Równa broda.</h1><p>Strzyżenie męskie i pielęgnacja brody. Wybierz usługę i umów termin online.</p><a class="btn" href="#booking">Umów wizytę</a><a class="btn ghost" href="#services">Cennik</a></div><div class="art" role="img" aria-label="Miejsce na zdjęcie">Tu miejsce na zdjęcie barbershopu</div></div><div class="three"><div class="tile"><h3>Strzyżenie</h3><p>Klasyczne i nowoczesne fryzury.</p></div><div class="tile"><h3>Broda</h3><p>Trymowanie, golenie, pielęgnacja.</p></div><div class="tile"><h3>Combo</h3><p>Włosy i broda w jednej wizycie.</p></div></div></section><section class="page" id="services"><h2>Usługi i cennik</h2><div class="rows"><div class="row"><h3>Strzyżenie męskie</h3><b>xx zł</b><p>Mycie i stylizacja w cenie, jeśli tak ustali właściciel</p></div><div class="row"><h3>Strzyżenie maszynką</h3><b>xx zł</b><p>Jedna długość lub fade</p></div><div class="row"><h3>Broda</h3><b>xx zł</b><p>Trymowanie i kontur</p></div><div class="row"><h3>Combo: włosy i broda</h3><b>xx zł</b><p>Pełna wizyta</p></div><div class="row"><h3>Strzyżenie dziecięce</h3><b>xx zł</b><p>Do ustalenia wiek</p></div></div><p class="note">Usługi i ceny są przykładowe. Zastąp je prawdziwym cennikiem barbershopu.</p></section><section class="page" id="booking"><div class="cols"><div><h2>Rezerwacja</h2><p>Wybierz usługę i dogodny termin. Salon potwierdzi wizytę telefonicznie lub wiadomością.</p><p class="note">Wersja demo: formularz nie wysyła danych. W gotowej stronie można podłączyć system rezerwacji.</p></div><form id="f"><label>Imię<input required></label><label>Telefon<input required type="tel"></label><label>Usługa<select><option>Strzyżenie męskie</option><option>Broda</option><option>Combo</option></select></label><label>Data<input type="date"></label><button class="btn" type="submit">Wyślij prośbę</button><div class="ok" id="ok" role="status">To wersja demo: formularz nic nie wysyła.</div></form></div></section><section class="page" id="contact"><div class="cols"><div><h2>Kontakt</h2><p><b>Telefon:</b> +48 000 000 000<br><b>E-mail:</b> kontakt@twojlokal.example<br><b>Adres:</b> ul. Przykładowa 0, Gdańsk</p><p><b>Godziny otwarcia:</b><br>Pon–Nd: 00:00–00:00</p><p class="note">Dane kontaktowe to wartości przykładowe.</p></div><div class="art" role="img" aria-label="Miejsce na zdjęcie">Tu miejsce na zdjęcie wnętrza</div></div></section></main><footer>Wersja demonstracyjna · Young Rebels Studio</footer><script>(function(){var P=["home", "services", "booking", "contact"];function s(){var h=(location.hash||'#home').slice(1);if(P.indexOf(h)<0)h='home';
+P.forEach(function(p){document.getElementById(p).classList.toggle('on',p===h)});
+document.querySelectorAll('nav a').forEach(function(a){if(a.getAttribute('href')==='#'+h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});window.scrollTo(0,0)}
+window.addEventListener('hashchange',s);s();var f=document.getElementById('f');if(f)f.addEventListener('submit',function(e){e.preventDefault();document.getElementById('ok').style.display='block'})})();</script></body></html>

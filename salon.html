@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Salon Urody – wersja demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF8FC;--ink:#2A1E33;--mute:#6E6277;--line:#E4DAEC;--acc:#8A5FBF;--soft:#EFE6F7;--peach:#F6DCD3;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Jost,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+h1,h2,h3{font-family:Marcellus,Georgia,serif;font-weight:400;line-height:1.12;margin:0}
+h1{font-size:clamp(2.6rem,7vw,5rem)}h2{font-size:clamp(2rem,4.5vw,3rem);margin-bottom:.6em}h3{font-size:1.35rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:rgba(251,248,252,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{max-width:1080px;margin:auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.logo{font-family:Marcellus,serif;font-size:1.4rem;text-decoration:none}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{text-decoration:none;padding:8px 14px;border-radius:99px;color:var(--mute);font-weight:500}
+nav a[aria-current=page]{background:var(--soft);color:var(--ink)}
+nav a:hover{color:var(--ink)}
+main{max-width:1080px;margin:auto;padding:0 22px}
+.page{display:none;padding:56px 0 72px}.page.on{display:block}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.hero p{color:var(--mute);max-width:46ch;margin:22px 0 30px}
+.arch{aspect-ratio:3/4;border-radius:999px 999px 24px 24px;background:linear-gradient(170deg,var(--peach),var(--soft) 60%,#D9C8EE);position:relative;max-width:340px;justify-self:center;width:100%}
+.arch::after{content:"Tu miejsce na zdjęcie salonu";position:absolute;inset:auto 0 18px;text-align:center;color:var(--mute);font-size:.9rem}
+.btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;padding:14px 28px;border-radius:99px;font-weight:500;border:0;font:inherit;cursor:pointer}
+.btn:hover{background:var(--acc)}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--ink);margin-left:8px}
+.btn.ghost:hover{background:var(--soft)}
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:220px 1fr auto;gap:24px;padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.row p{margin:0;color:var(--mute)}.row b{font-weight:500;white-space:nowrap}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.note{background:var(--soft);padding:18px 22px;border-radius:16px;color:var(--mute);margin-top:28px;font-size:.95rem}
+label{display:block;font-weight:500;margin:0 0 16px}
+input,textarea,select{display:block;width:100%;margin-top:6px;padding:12px 14px;font:inherit;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+.ok{display:none;margin-top:14px;color:var(--acc);font-weight:500}
+footer{border-top:1px solid var(--line);padding:28px 22px;text-align:center;color:var(--mute);font-size:.9rem}
+@media(max-width:760px){.hero,.cols{grid-template-columns:1fr;gap:32px}.row{grid-template-columns:1fr;gap:4px}.btn.ghost{margin:10px 0 0}}
+@media(prefers-reduced-motion:no-preference){.page.on{animation:in .35s ease}@keyframes in{from{opacity:0}to{opacity:1}}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="logo" href="#home">Salon Urody</a>
+<nav aria-label="Menu">
+<a href="#home">Start</a><a href="#services">Usługi</a><a href="#pricing">Cennik</a><a href="#about">O salonie</a><a href="#contact">Kontakt</a>
+</nav></div></header>
+<main>
+<section class="page" id="home">
+<div class="hero"><div>
+<h1>Chwila tylko dla Ciebie</h1>
+<p>Fryzjerstwo, stylizacja paznokci i pielęgnacja twarzy w jednym miejscu. Umów wizytę w kilka minut.</p>
+<a class="btn" href="#contact">Umów wizytę</a><a class="btn ghost" href="#services">Zobacz usługi</a>
+</div><div class="arch" role="img" aria-label="Miejsce na zdjęcie"></div></div>
+</section>
+
+<section class="page" id="services">
+<h2>Usługi</h2>
+<div class="rows">
+<div class="row"><h3>Fryzjerstwo</h3><p>Strzyżenie, koloryzacja, regeneracja i stylizacja włosów.</p></div>
+<div class="row"><h3>Manicure i pedicure</h3><p>Klasyczny, hybrydowy, żelowy. Dopasowany do Twojego stylu.</p></div>
+<div class="row"><h3>Pielęgnacja twarzy</h3><p>Oczyszczanie, nawilżanie i zabiegi dobrane do typu skóry.</p></div>
+<div class="row"><h3>Brwi i rzęsy</h3><p>Regulacja, henna, laminacja, stylizacja rzęs.</p></div>
+<div class="row"><h3>Makijaż</h3><p>Makijaż dzienny i okolicznościowy.</p></div>
+</div>
+<p class="note">Lista usług to przykład. Właściciel salonu podmieni ją na swoją ofertę.</p>
+</section>
+
+<section class="page" id="pricing">
+<h2>Cennik</h2>
+<div class="rows">
+<div class="row"><h3>Strzyżenie damskie</h3><p>Mycie, strzyżenie, układanie</p><b>xx zł</b></div>
+<div class="row"><h3>Koloryzacja</h3><p>Cena zależy od długości włosów</p><b>od xx zł</b></div>
+<div class="row"><h3>Manicure hybrydowy</h3><p>Ze zdobieniem lub bez</p><b>xx zł</b></div>
+<div class="row"><h3>Pedicure</h3><p>Klasyczny lub hybrydowy</p><b>xx zł</b></div>
+<div class="row"><h3>Zabieg na twarz</h3><p>Po konsultacji</p><b>od xx zł</b></div>
+<div class="row"><h3>Stylizacja brwi</h3><p>Regulacja i henna</p><b>xx zł</b></div>
+</div>
+<p class="note">Ceny to oznaczenia „xx zł”: wpisz tu prawdziwe kwoty klienta.</p>
+</section>
+
+<section class="page" id="about">
+<div class="cols"><div>
+<h2>O salonie</h2>
+<p>Tu pojawi się historia salonu: kto go prowadzi, od kiedy działa i czym się wyróżnia. Napisz kilka zdań o zespole i podejściu do klientek.</p>
+<p>Dodaj zdjęcia wnętrza i zespołu oraz prawdziwe opinie klientek, gdy będą dostępne.</p>
+</div><div class="arch" role="img" aria-label="Miejsce na zdjęcie zespołu"></div></div>
+</section>
+
+<section class="page" id="contact">
+<div class="cols"><div>
+<h2>Kontakt</h2>
+<p><b>Telefon:</b> +48 000 000 000<br><b>E-mail:</b> kontakt@twojsalon.example<br><b>Adres:</b> ul. Przykładowa 0, Gdańsk</p>
+<p><b>Godziny otwarcia:</b><br>Pon–Pt: 00:00–00:00<br>Sob: 00:00–00:00</p>
+<p class="note">Dane kontaktowe to wartości przykładowe.</p>
+</div>
+<form id="f">
+<label>Imię<input required autocomplete="name"></label>
+<label>Telefon<input required type="tel" autocomplete="tel"></label>
+<label>Usługa<select><option>Fryzjerstwo</option><option>Manicure / pedicure</option><option>Pielęgnacja twarzy</option><option>Brwi i rzęsy</option><option>Makijaż</option></select></label>
+<label>Wiadomość<textarea rows="3"></textarea></label>
+<button class="btn" type="submit">Wyślij zapytanie</button>
+<div class="ok" id="ok" role="status">To wersja demo: formularz nic nie wysyła.</div>
+</form></div>
+</section>
+</main>
+<footer>Wersja demonstracyjna · Young Rebels Studio</footer>
+<script>
+(function(){
+var pages=['home','services','pricing','about','contact'];
+function show(){
+var h=(location.hash||'#home').slice(1);if(pages.indexOf(h)<0)h='home';
+pages.forEach(function(p){document.getElementById(p).classList.toggle('on',p===h)});
+document.querySelectorAll('nav a').forEach(function(a){if(a.getAttribute('href')==='#'+h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',show);show();
+document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();document.getElementById('ok').style.display='block'});
+})();
+</script>
+</body>
+</html>

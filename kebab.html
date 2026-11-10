@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Kebab – wersja demo</title><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Figtree:wght@400;500&display=swap" rel="stylesheet"><style>
+:root{--bg:#FFFDF7;--ink:#1D1410;--mute:#6B5C55;--line:#E8DED3;--acc:#D62F1F;--onacc:#fff;--card:#FFF0C9;--art:linear-gradient(150deg,#FFD24D,#FF8A3D 60%,#E5432C);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;line-height:1.08;letter-spacing:-.01em}
+h1{font-size:clamp(2.6rem,8vw,5.2rem);font-weight:800}h2{font-size:clamp(1.9rem,4.5vw,2.8rem);margin-bottom:.6em;font-weight:800}h3{font-size:1.2rem;font-weight:700}
+a{color:inherit}:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);border-bottom:2px solid var(--ink)}
+.bar{max-width:1080px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.logo{font:800 1.3rem "Bricolage Grotesque",sans-serif;text-decoration:none}
+nav{display:flex;gap:2px;flex-wrap:wrap}nav a{text-decoration:none;padding:8px 14px;border-radius:8px;font-weight:500;color:var(--mute)}
+nav a:hover{color:var(--ink)}nav a[aria-current=page]{background:var(--acc);color:var(--onacc)}
+main{max-width:1080px;margin:auto;padding:0 22px}
+.page{display:none;padding:52px 0 72px}.page.on{display:block}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center}
+.hero p{color:var(--mute);max-width:46ch;margin:20px 0 28px;font-size:1.08rem}
+.art{aspect-ratio:1/1;border-radius:28px;background:var(--art);display:grid;place-items:center;text-align:center;padding:24px;color:var(--ink);font-size:.9rem;max-width:380px;width:100%;justify-self:center}
+.btn{display:inline-block;background:var(--acc);color:var(--onacc);text-decoration:none;padding:14px 28px;border-radius:10px;font:700 1rem "Bricolage Grotesque",sans-serif;border:0;cursor:pointer}
+.btn:hover{filter:brightness(.92)}.btn.ghost{background:none;color:var(--ink);border:2px solid var(--ink);margin-left:8px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}
+.tile{background:var(--card);border-radius:16px;padding:22px}.tile p{margin:6px 0 0;color:var(--mute);font-size:.96rem}
+.rows{border-top:2px solid var(--ink)}
+.row{display:grid;grid-template-columns:1fr auto;gap:2px 24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.row p{grid-column:1;margin:0;color:var(--mute);font-size:.96rem}.row b{grid-row:1;grid-column:2;font:800 1.15rem "Bricolage Grotesque",sans-serif;white-space:nowrap}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.note{background:var(--card);padding:16px 20px;border-radius:12px;color:var(--mute);margin-top:24px;font-size:.93rem}
+label{display:block;font-weight:500;margin:0 0 14px}
+input,textarea,select{display:block;width:100%;margin-top:6px;padding:12px 14px;font:inherit;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.ok{display:none;margin-top:14px;font-weight:700}
+footer{border-top:2px solid var(--ink);padding:26px 22px;text-align:center;color:var(--mute);font-size:.9rem}
+@media(max-width:760px){.hero,.cols,.three{grid-template-columns:1fr}.btn.ghost{margin:10px 0 0}}
+@media(prefers-reduced-motion:no-preference){.page.on{animation:in .3s ease}@keyframes in{from{opacity:0}to{opacity:1}}}
+.page{display:block;padding:44px 0}@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}</style></head><body><header><div class="bar"><a class="logo" href="#home">Kebab</a><nav aria-label="Menu"><a href="#home">Start</a><a href="#menu">Menu</a><a href="#delivery">Dostawa</a><a href="#contact">Kontakt</a></nav></div></header><main><section class="page" id="home"><div class="hero"><div><h1>Świeży kebab, szybko i na gorąco</h1><p>Kebab w bułce, w tortilli i na talerzu. Zamów na miejscu, na wynos lub z dostawą.</p><a class="btn" href="#menu">Zobacz menu</a><a class="btn ghost" href="#contact">Jak trafić</a></div><div class="art" role="img" aria-label="Miejsce na zdjęcie">Tu miejsce na zdjęcie kebaba</div></div><div class="three"><div class="tile"><h3>Na miejscu i na wynos</h3><p>Opisz, jak można zamawiać.</p></div><div class="tile"><h3>Dostawa</h3><p>Dodaj obszar i godziny dostawy.</p></div><div class="tile"><h3>Wegetariańskie opcje</h3><p>Dodaj, jeśli lokal je oferuje.</p></div></div></section><section class="page" id="menu"><h2>Menu</h2><div class="rows"><div class="row"><h3>Kebab w bułce</h3><b>xx zł</b><p>Mięso, surówka, sos do wyboru</p></div><div class="row"><h3>Kebab w tortilli</h3><b>xx zł</b><p>Mięso, warzywa, sos do wyboru</p></div><div class="row"><h3>Kebab box</h3><b>xx zł</b><p>Mięso, frytki, surówka</p></div><div class="row"><h3>Falafel</h3><b>xx zł</b><p>Wersja wegetariańska</p></div><div class="row"><h3>Frytki</h3><b>xx zł</b><p>Porcja mała i duża</p></div><div class="row"><h3>Napoje</h3><b>xx zł</b><p>Zimne napoje</p></div></div><p class="note">Pozycje menu są przykładowe. Ceny „xx zł” zastąpi właściciel lokalu.</p></section><section class="page" id="delivery"><div class="cols"><div><h2>Dostawa</h2><p>Tu opisz, czy lokal dowozi jedzenie, na jakim obszarze i w jakich godzinach.</p><p>Dodaj minimalną wartość zamówienia i koszt dostawy, gdy będą znane.</p></div><div class="art" role="img" aria-label="Miejsce na zdjęcie">Tu miejsce na zdjęcie lokalu</div></div></section><section class="page" id="contact"><div class="cols"><div><h2>Kontakt</h2><p><b>Telefon:</b> +48 000 000 000<br><b>E-mail:</b> kontakt@twojlokal.example<br><b>Adres:</b> ul. Przykładowa 0, Gdańsk</p><p><b>Godziny otwarcia:</b><br>Pon–Nd: 00:00–00:00</p><p class="note">Dane kontaktowe to wartości przykładowe.</p></div><form id="f"><label>Imię<input required></label><label>Telefon<input required type="tel"></label><label>Wiadomość<textarea rows="3"></textarea></label><button class="btn" type="submit">Wyślij</button><div class="ok" id="ok" role="status">To wersja demo: formularz nic nie wysyła.</div></form></div></section></main><footer>Wersja demonstracyjna · Young Rebels Studio</footer><script>var f=document.getElementById('f');if(f)f.addEventListener('submit',function(e){e.preventDefault();document.getElementById('ok').style.display='block'});</script></body></html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Serwis GSM – wersja demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F8FB;--ink:#0E1B2C;--mute:#5B6B7F;--line:#DCE4EC;--acc:#1F6BFF;--acc2:#E8F0FF;--w:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.6 "IBM Plex Sans",system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--w);z-index:10}
+h1,h2,h3{font-family:Sora,system-ui,sans-serif;margin:0;line-height:1.1;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,6.5vw,4.6rem);font-weight:800}h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;margin-bottom:.7em}h3{font-size:1.1rem;font-weight:700}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--w);border-bottom:1px solid var(--line)}
+.bar{max-width:1080px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.logo{font:800 1.25rem Sora,sans-serif;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo i{width:28px;height:28px;border-radius:8px;background:var(--acc);display:inline-block;position:relative}
+.logo i::after{content:"";position:absolute;left:9px;top:6px;width:10px;height:16px;border:2px solid #fff;border-radius:3px}
+nav{display:flex;gap:2px;flex-wrap:wrap}
+nav a{text-decoration:none;padding:8px 13px;border-radius:8px;color:var(--mute);font-weight:500}
+nav a:hover{color:var(--ink)}nav a[aria-current=page]{background:var(--acc2);color:var(--acc)}
+main{max-width:1080px;margin:auto;padding:0 22px}
+.page{display:none;padding:52px 0 72px}.page.on{display:block}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:44px;align-items:center}
+.hero p{color:var(--mute);max-width:48ch;margin:20px 0 28px;font-size:1.08rem}
+.btn{display:inline-block;background:var(--acc);color:#fff;text-decoration:none;padding:14px 26px;border-radius:10px;font:600 1rem Sora,sans-serif;border:0;cursor:pointer}
+.btn:hover{background:#1555d1}
+.btn.ghost{background:none;color:var(--ink);border:1.5px solid var(--ink);margin-left:8px}
+.btn.ghost:hover{background:var(--acc2);border-color:var(--acc)}
+.phone{justify-self:center;width:210px;aspect-ratio:9/18;border:8px solid var(--ink);border-radius:34px;background:linear-gradient(160deg,#fff,var(--acc2));position:relative;display:grid;place-items:center;text-align:center;padding:18px;color:var(--mute);font-size:.85rem;transform:rotate(4deg)}
+.phone::before{content:"";position:absolute;top:10px;width:54px;height:6px;border-radius:9px;background:var(--ink)}
+.phone b{display:block;font:700 1.9rem Sora,sans-serif;color:var(--acc);margin-bottom:6px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;border:1px solid var(--line);border-radius:14px;background:var(--w);overflow:hidden}
+.steps div{padding:22px;border-right:1px solid var(--line)}.steps div:last-child{border:0}
+.steps p{margin:6px 0 0;color:var(--mute);font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tile{background:var(--w);border:1px solid var(--line);border-radius:12px;padding:20px}
+.tile p{margin:6px 0 0;color:var(--mute);font-size:.95rem}
+table{width:100%;border-collapse:collapse;background:var(--w);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line)}
+th{font:700 .85rem Sora,sans-serif;background:var(--acc2);color:var(--acc)}
+td:last-child,th:last-child{text-align:right;white-space:nowrap}tr:last-child td{border:0}
+.scroll{overflow-x:auto}
+.note{background:var(--acc2);padding:16px 20px;border-radius:12px;color:var(--mute);margin-top:24px;font-size:.93rem}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+label{display:block;font-weight:500;margin:0 0 14px}
+input,textarea,select{display:block;width:100%;margin-top:6px;padding:12px 14px;font:inherit;border:1px solid var(--line);border-radius:10px;background:var(--w);color:var(--ink)}
+.ok{display:none;margin-top:14px;color:var(--acc);font-weight:500}
+footer{border-top:1px solid var(--line);padding:26px 22px;text-align:center;color:var(--mute);font-size:.9rem;background:var(--w)}
+@media(max-width:760px){.hero,.cols,.steps,.grid{grid-template-columns:1fr}.steps div{border-right:0;border-bottom:1px solid var(--line)}.phone{transform:none}.btn.ghost{margin:10px 0 0}}
+@media(prefers-reduced-motion:no-preference){.page.on{animation:in .3s ease}@keyframes in{from{opacity:0}to{opacity:1}}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="logo" href="#home"><i></i>Serwis GSM</a>
+<nav aria-label="Menu">
+<a href="#home">Start</a><a href="#repairs">Naprawy</a><a href="#pricing">Cennik</a><a href="#shop">Akcesoria</a><a href="#contact">Kontakt</a>
+</nav></div></header>
+<main>
+<section class="page" id="home">
+<div class="hero"><div>
+<h1>Telefon znowu działa</h1>
+<p>Naprawiamy smartfony i tablety: wymiana ekranu, baterii, gniazda ładowania i inne usterki. Diagnoza przed naprawą.</p>
+<a class="btn" href="#contact">Zgłoś naprawę</a><a class="btn ghost" href="#pricing">Zobacz cennik</a>
+</div><div class="phone" role="img" aria-label="Miejsce na zdjęcie"><div><b>Demo</b>Tu może być zdjęcie serwisu lub urządzenia</div></div></div>
+<div class="steps">
+<div><h3>1. Przynieś urządzenie</h3><p>Opisz usterkę, a my ją sprawdzimy.</p></div>
+<div><h3>2. Diagnoza i wycena</h3><p>Dowiesz się, co jest zepsute i ile to kosztuje.</p></div>
+<div><h3>3. Naprawa</h3><p>Odbierasz telefon po naprawie i testach.</p></div>
+</div>
+</section>
+
+<section class="page" id="repairs">
+<h2>Naprawy</h2>
+<div class="grid">
+<div class="tile"><h3>Wymiana ekranu</h3><p>Pęknięty lub niedziałający wyświetlacz i szybka.</p></div>
+<div class="tile"><h3>Wymiana baterii</h3><p>Telefon szybko się rozładowuje lub wyłącza.</p></div>
+<div class="tile"><h3>Gniazdo ładowania</h3><p>Telefon nie ładuje lub kabel się luzuje.</p></div>
+<div class="tile"><h3>Zalany telefon</h3><p>Czyszczenie i sprawdzenie po zalaniu.</p></div>
+<div class="tile"><h3>Aparat i głośniki</h3><p>Wymiana aparatu, mikrofonu i głośnika.</p></div>
+<div class="tile"><h3>Oprogramowanie</h3><p>Aktualizacje, reset, odzyskiwanie danych.</p></div>
+</div>
+<p class="note">To przykładowa lista. Właściciel serwisu podmieni ją na swoją ofertę.</p>
+</section>
+
+<section class="page" id="pricing">
+<h2>Cennik</h2>
+<div class="scroll"><table>
+<tr><th>Usługa</th><th>Czas</th><th>Cena</th></tr>
+<tr><td>Diagnoza</td><td>do xx min</td><td>xx zł</td></tr>
+<tr><td>Wymiana ekranu</td><td>od xx min</td><td>od xx zł</td></tr>
+<tr><td>Wymiana baterii</td><td>od xx min</td><td>od xx zł</td></tr>
+<tr><td>Gniazdo ładowania</td><td>od xx min</td><td>od xx zł</td></tr>
+<tr><td>Czyszczenie po zalaniu</td><td>do xx dni</td><td>od xx zł</td></tr>
+<tr><td>Oprogramowanie</td><td>do xx min</td><td>od xx zł</td></tr>
+</table></div>
+<p class="note">Zapisy „xx” to miejsca na prawdziwe ceny i czasy. Wpisz je z klientem.</p>
+</section>
+
+<section class="page" id="shop">
+<h2>Akcesoria</h2>
+<div class="grid">
+<div class="tile"><h3>Szkła i folie</h3><p>Ochrona ekranu do popularnych modeli.</p></div>
+<div class="tile"><h3>Etui</h3><p>Silikonowe, książkowe, pancerne.</p></div>
+<div class="tile"><h3>Ładowarki i kable</h3><p>USB-C, Lightning, ładowarki samochodowe.</p></div>
+<div class="tile"><h3>Słuchawki</h3><p>Przewodowe i bezprzewodowe.</p></div>
+<div class="tile"><h3>Powerbanki</h3><p>Różne pojemności.</p></div>
+<div class="tile"><h3>Uchwyty</h3><p>Do auta i na biurko.</p></div>
+</div>
+<p class="note">Asortyment przykładowy. Zastąp go towarami, które naprawdę są w sklepie.</p>
+</section>
+
+<section class="page" id="contact">
+<div class="cols"><div>
+<h2>Kontakt</h2>
+<p><b>Telefon:</b> +48 000 000 000<br><b>E-mail:</b> serwis@twojserwis.example<br><b>Adres:</b> ul. Przykładowa 0, Gdańsk</p>
+<p><b>Godziny otwarcia:</b><br>Pon–Pt: 00:00–00:00<br>Sob: 00:00–00:00</p>
+<p class="note">Dane kontaktowe to wartości przykładowe.</p>
+</div>
+<form id="f">
+<label>Imię<input required autocomplete="name"></label>
+<label>Telefon<input required type="tel" autocomplete="tel"></label>
+<label>Model urządzenia<input placeholder="np. marka i model"></label>
+<label>Opis usterki<textarea rows="3"></textarea></label>
+<button class="btn" type="submit">Wyślij zgłoszenie</button>
+<div class="ok" id="ok" role="status">To wersja demo: formularz nic nie wysyła.</div>
+</form></div>
+</section>
+</main>
+<footer>Wersja demonstracyjna · Young Rebels Studio</footer>
+<script>
+(function(){
+var pages=['home','repairs','pricing','shop','contact'];
+function show(){
+var h=(location.hash||'#home').slice(1);if(pages.indexOf(h)<0)h='home';
+pages.forEach(function(p){document.getElementById(p).classList.toggle('on',p===h)});
+document.querySelectorAll('nav a').forEach(function(a){if(a.getAttribute('href')==='#'+h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',show);show();
+document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();document.getElementById('ok').style.display='block'});
+})();
+</script>
+</body>
+</html>
